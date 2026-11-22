@@ -14,7 +14,7 @@ Binding constraints (`CLAUDE.md`, "Hard rules"): no dependency, loopback only, n
 
 **Your work here.** You are the review gate on every ticket of a leaf sub-issue of epic #1, on the full diff: `offline_routes/*.py`, `offline_routes/static/`, `tests/` and the PRD sections the ticket changed.
 
-**What you must be given.** You cannot run commands. The caller writes the diff and evidence to `.claude/state/review/` in the ticket worktree and names the files. It hands you the full diff of the ticket branch against `main`, the issue's acceptance criteria, and the recorded output of `python -m unittest discover -s tests -t .` with the test count before and after; for a change under `offline_routes/static/` also the manual browser record. If one is missing, do not approve.
+**What you must be given.** You cannot run commands. The caller writes the diff and evidence to `.claude/state/review/` in the ticket worktree and names the files. It hands you the full diff of the ticket branch against `main`, the issue's acceptance criteria, and the recorded output of `python -m unittest discover -s tests -t .` with the test count before and after; for a change under `offline_routes/static/` also the recorded scripted or headless browser run. When the ticket marks the browser step manual, the steps the agent could not run must be listed under "Owner checks" in the pull request text, as the Reality Checker accepts. If any other item is missing, do not approve.
 
 **Checklist.**
 

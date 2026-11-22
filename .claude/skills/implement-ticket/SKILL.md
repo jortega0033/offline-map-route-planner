@@ -23,7 +23,7 @@ The project subagents in `.claude/agents/` are part of the work. Each role file 
 9. **Acceptance gate, always.** Run Reality Checker with the ticket's acceptance criteria and the evidence you produced. Do not call the ticket done unless it passes.
 10. **Copy check.** Run the `unslop` skill over user-facing copy, documentation and the pull request text you wrote, and fix what it flags.
 11. **Changelog.** Add one line for the ticket under `Unreleased` in `CHANGELOG.md`.
-12. **Hand off.** Capture the evidence `CLAUDE.md` asks for. Open the pull request as a draft (`gh pr create --draft`) with `.github/pull_request_template.md` (it names the issue and has the "Agent roles run" table) only after both gates passed on the current diff; the gate hook blocks `gh pr create` and `gh pr ready` otherwise. A `/next-ticket` run counts as the owner's request to push the branch and open the pull request; outside such a run, push and open it only when the owner asks in the current session. Wait for CI (`gh pr checks`) to be green on every job, then mark the pull request ready. Only the owner merges: never run `gh pr merge`.
+12. **Hand off.** Capture the evidence `CLAUDE.md` asks for. Open the pull request as a draft (`gh pr create --draft`) with `.github/pull_request_template.md` (it names the issue and has the "Agent roles run" table) only after the local checks and both gates passed on the current diff; the gate hook blocks `gh pr create` and `gh pr ready` otherwise. A `/next-ticket` run counts as the owner's request to push the branch and open the pull request; outside such a run, push and open it only when the owner asks in the current session. CI runs on the draft. If a job fails, fix it, re-run the local checks and both gates, and push. Mark the pull request ready (`gh pr ready`; the hook checks the gates again) only when `gh pr checks` is green on every job; the driver checks this, not Reality Checker. Only the owner merges: never run `gh pr merge`.
 
 ## Roles
 
@@ -56,7 +56,7 @@ The project subagents in `.claude/agents/` are part of the work. Each role file 
 | Role | Access | Delegate to it |
 |---|---|---|
 | Code Reviewer | read-only reviewer | After implementing or changing code for a ticket, before the work is called done or a pull request is opened |
-| Reality Checker | read-only reviewer | As the last step of every ticket, to check each acceptance criterion against evidence that was actually produced before the ticket is called done |
+| Reality Checker | read-only reviewer | As the last step of every ticket, to check each acceptance criterion against the local evidence that was actually produced, and that CI is configured to run the checks, before the draft pull request is opened |
 
 ## Rules
 

@@ -97,7 +97,7 @@ Rules that every change must keep:
 
 - `main` is the default branch. CI runs the test suite on Linux and Windows (see "Delivery workflow"); checks are also run locally and reported with their output.
 - One branch per issue. The repository has no naming rule yet; `<issue-number>-<short-slug>` is the suggested form. Small commits with imperative subjects and a type prefix, as in the existing history (`feat:`, and by extension `fix:`, `docs:`, `test:`, `chore:`).
-- Open a pull request that names the issue (`Part of #1`, `Closes #n`) with the pull request template. Push the branch and open it only when the owner asked in the current session; a `/next-ticket` run counts as that request. Open it as a draft (`gh pr create --draft`) only after both gates passed on the current diff, and mark it ready (`gh pr ready`) only when CI is green; run both from the ticket worktree. Do not merge your own pull request and do not push to `main`.
+- Open a pull request that names the issue (`Part of #1`, `Closes #n`) with the pull request template. Push the branch and open it only when the owner asked in the current session; a `/next-ticket` run counts as that request. Order: local checks pass, Code Reviewer and then Reality Checker pass on the current diff, only then open it as a draft (`gh pr create --draft`); CI runs on the draft, and mark it ready (`gh pr ready`) only when CI is green; run both from the ticket worktree. Do not merge your own pull request and do not push to `main`.
 - Two pull requests that each add a migration: the one that merges second renumbers its migration and rebases.
 - Never commit a data directory, a SQLite file, `.env*`, or `.prep/`.
 - Do not change `.claude/agents/`, `LOOP.md`, `loop-constraints.md` or `loop-budget.md` as part of a feature ticket.
@@ -113,7 +113,7 @@ Put these in the pull request description. Paste real output; do not summarise a
 5. For a change under `offline_routes/static/`: a browser run on `http://127.0.0.1:<port>/` with the browser name and version, the viewport sizes checked (800x600 and 360x640), keyboard-only operation of the changed controls, and the console and network log free of errors and of requests to another host. Browser checks are manual: the repository has no approved browser automation.
 6. For anything that claims determinism (routing, generators, search order, `verify` output): the same result from two runs, and the pinned expected value in a test.
 7. `git status` showing no stray files, and confirmation that no dependency, external URL or non-loopback listener was added.
-8. Green CI on the pull request: every job of `.github/workflows/ci.yml` passed.
+8. Green CI on the draft pull request: every job of `.github/workflows/ci.yml` passed. This is checked by the driver after the gates, before `gh pr ready`; the gates themselves check items 1 to 7 and that CI is configured to run the checks.
 9. Anything not verified, said plainly (for example "not run on Linux" or "not run on Python 3.12").
 
 ## Subagents and ticket work

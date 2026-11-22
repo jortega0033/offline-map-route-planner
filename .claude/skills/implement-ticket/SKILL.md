@@ -8,7 +8,7 @@ argument-hint: "[issue number]"
 
 Use this playbook for every implementation ticket in this repository. `CLAUDE.md` holds the commands, the architecture boundaries, the Git workflow and the evidence rules; where this playbook and `CLAUDE.md` differ, `CLAUDE.md` wins.
 
-The project subagents in `.claude/agents/` are part of the work. Delegate to them at the steps below without waiting to be asked. If a step names a role that is not installed, do that step yourself and say so in the pull request.
+The project subagents in `.claude/agents/` are part of the work. Each role file starts with an "In this repository" section that says what the role does here and what it must be given. Delegate to them at the steps below without waiting to be asked. If a step names a role that is not installed, do that step yourself and say so in the pull request.
 
 ## Steps
 
@@ -17,7 +17,7 @@ The project subagents in `.claude/agents/` are part of the work. Delegate to the
 3. **Orient and check the approach.** Delegate as the table "Before coding" says. Settle open design questions before writing code.
 4. **Branch** as the Git workflow in `CLAUDE.md` says. Never work on the default branch.
 5. **Implement** inside the ticket's stated scope. Delegate the work to the implementing role that matches the files being changed (table "While coding"). Do not widen scope; note anything else you find as a follow-up.
-6. **Test.** Add or change tests for every acceptance criterion and material edge case, then run the checks listed in `CLAUDE.md`. Record each command and its result.
+6. **Test.** Add tests for every acceptance criterion and material edge case. Expected values in existing tests stay as they are unless the issue names the test and the change (`CLAUDE.md`, "Evidence before a ticket is called done"). Then run the checks listed in `CLAUDE.md`; a change to the page also needs the recorded manual browser run it describes, because the repository has no browser automation. Record each command and its result.
 7. **Specialist review.** Run every role in the table "After coding" whose trigger matches the change.
 8. **Review gate, always.** Run Code Reviewer on the full diff. Fix every material finding, re-run the checks, and have the reviewer look again until no material finding is left.
 9. **Acceptance gate, always.** Run Reality Checker with the ticket's acceptance criteria and the evidence you produced. Do not call the ticket done unless it passes.

@@ -13,7 +13,7 @@ An offline route planner for one person on one computer. One Python package, sta
 | Product scope, milestones, API and schema contracts, fixtures, acceptance matrix | [docs/PRD.md](docs/PRD.md) |
 | How the code is built, the traced workflow, the rules the code keeps, differences between the PRD and the code | [docs/architecture.md](docs/architecture.md) |
 | Launch, smoke steps, limits, the owner's baseline verification | [README.md](README.md) |
-| Backlog | Epic issue #1 and its sub-issues on GitHub, in dependency order: #7, #2, then two tracks (#4 then #3, and #5 then #6), then #8. The epic gives the dependencies, the join points and the estimates. |
+| Backlog | Epic issue #1 and its sub-issues on GitHub (`gh api repos/jortega0033/offline-map-route-planner/issues/1/sub_issues`), in the epic's order. Only leaf tickets are work; the epic is a container. The epic gives the dependencies, the join points and the estimates. |
 | Loop setup and its limits | [LOOP.md](LOOP.md), [loop-constraints.md](loop-constraints.md) |
 | Project subagents and their origin | [.claude/agency-agents/README.md](.claude/agency-agents/README.md) |
 | Ticket playbook | [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md) |
@@ -142,6 +142,7 @@ How a ticket gets from the backlog to a ready pull request. Each piece lives in 
 
 - **Start and playbook.** The owner starts one ticket with `/next-ticket` ([.claude/skills/next-ticket/SKILL.md](.claude/skills/next-ticket/SKILL.md)); it runs [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md). Nothing is scheduled. [LOOP.md](LOOP.md) says why ticket work is not a loop run.
 - **Review gate hook.** [.claude/hooks/role_gate.py](.claude/hooks/role_gate.py), wired in [.claude/settings.json](.claude/settings.json), blocks `gh pr create` and `gh pr ready` until Code Reviewer and Reality Checker ran after the last code edit. Starting Claude Code with `ROLE_GATE=off` in its environment switches it off for that session.
+- **Sub-issues, CI wait, reviewer diffs.** `/next-ticket` picks leaf tickets only and refuses a `tracking` parent; the pull request of a parent's last sub-issue also closes the parent. After the draft pull request it ends the turn with "Draft pull request #N is waiting for CI" instead of polling, and reads `gh pr checks` once when woken. The reviewers have no shell, so the diff and evidence go to `.claude/state/review/` first. Acceptance steps only a person can do are listed as "Owner checks" in the pull request.
 - **Permissions.** The allow, ask and deny rules are in `.claude/settings.json`. Edits to CI, agent configuration and Loop files ask first; force pushes, pushes to `main`, `gh pr merge`, releases and reads of `.env` are denied.
 - **CI.** [.github/workflows/ci.yml](.github/workflows/ci.yml) must be green: job `test` on Ubuntu and Windows with Python 3.12 and 3.13.
 - **Pull request.** [.github/pull_request_template.md](.github/pull_request_template.md). Labels on tickets: `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`.

@@ -103,7 +103,7 @@ Rules that every change must keep:
 
 Put these in the pull request description. Paste real output; do not summarise a run you did not make.
 
-1. The output tail of `python -m unittest discover -s tests -t .` from a clean checkout, with the Python version and the operating system. State the test count before and after the change.
+1. The output tail of `python -m unittest discover -s tests -t .` from a clean checkout, with the Python version and the operating system. State the test count before and after the change. List every line changed in an existing test and why; expected values in existing tests stay as they are unless the issue names the test and the change.
 2. For each acceptance criterion of the issue: the name of the test that proves it, or the exact manual step and what was observed.
 3. For a schema change: the test that opens a database created by the previous schema version, the new `schema_version` reported by `/api/v1/health`, and proof that a route saved before the change reopens unchanged.
 4. For a new or changed route: one request and response pair per success and per error code, taken from a server started with `--port 0` on a scratch data directory, and the diff of PRD section 6.

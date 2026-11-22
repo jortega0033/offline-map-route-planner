@@ -53,7 +53,7 @@ Doctor exit codes: 0 healthy, 1 warnings, 2 blocked. Both commands fetch the pac
 
 ## Verifier
 
-`.claude/agents/loop-verifier.md` is the checker for a later maker/checker level. It is limited to `Read, Grep, Glob`, so it cannot run the tests itself and must answer `ESCALATE_HUMAN` when a verdict depends on a test run. It has no role at L1 because the loop proposes no changes.
+`.claude/agents/loop-verifier.md` is the checker for a later maker/checker level. It is limited to `Read, Grep, Glob`, so it cannot run the tests itself and must answer `ESCALATE_HUMAN` when a verdict depends on a test run that is not recorded. The scaffold text told it to run the tests; that was reworded here so the agent's instructions match its tools: it checks recorded test output and never approves without it. It has no role at L1 because the loop proposes no changes.
 
 ## Budget
 

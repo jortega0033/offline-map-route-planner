@@ -13,7 +13,7 @@ An offline route planner for one person on one computer. One Python package, sta
 | Product scope, milestones, API and schema contracts, fixtures, acceptance matrix | [docs/PRD.md](docs/PRD.md) |
 | How the code is built, the traced workflow, the rules the code keeps, differences between the PRD and the code | [docs/architecture.md](docs/architecture.md) |
 | Launch, smoke steps, limits, the owner's baseline verification | [README.md](README.md) |
-| Backlog | Epic issue #1 and its sub-issues on GitHub, in dependency order: #7, #2, then two tracks (#4 then #3, and #5 then #6), then #8. The epic gives the dependencies, the join points and the estimates. |
+| Backlog | Epic issue #1 and its sub-issues on GitHub (`gh api repos/jortega0033/offline-map-route-planner/issues/1/sub_issues`), in the epic's order. Only leaf tickets are work; the epic is a container. The epic gives the dependencies, the join points and the estimates. |
 | Loop setup and its limits | [LOOP.md](LOOP.md), [loop-constraints.md](loop-constraints.md) |
 | Project subagents and their origin | [.claude/agency-agents/README.md](.claude/agency-agents/README.md) |
 | Ticket playbook | [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md) |
@@ -107,10 +107,10 @@ Rules that every change must keep:
 Put these in the pull request description. Paste real output; do not summarise a run you did not make.
 
 1. The output tail of `python -m unittest discover -s tests -t .` from a clean checkout, with the Python version and the operating system. State the test count before and after the change. List every line changed in an existing test and why; expected values in existing tests stay as they are unless the issue names the test and the change.
-2. For each acceptance criterion of the issue: the name of the test that proves it, or the exact manual step and what was observed.
+2. For each acceptance criterion of the issue: the name of the test that proves it, or the exact manual step and what was observed. A step the ticket marks manual is run by the agent as far as it can, with evidence, and the rest is listed as Owner checks in the pull request.
 3. For a schema change: the test that opens a database created by the previous schema version, the new `schema_version` reported by `/api/v1/health`, and proof that a route saved before the change reopens unchanged.
 4. For a new or changed route: one request and response pair per success and per error code, taken from a server started with `--port 0` on a scratch data directory, and the diff of PRD section 6.
-5. For a change under `offline_routes/static/`: a browser run on `http://127.0.0.1:<port>/` with the browser name and version, the viewport sizes checked (800x600 and 360x640), keyboard-only operation of the changed controls, and the console and network log free of errors and of requests to another host. Browser checks are manual: the repository has no approved browser automation.
+5. For a change under `offline_routes/static/`: a browser run on `http://127.0.0.1:<port>/` with the browser name and version, the viewport sizes checked (800x600 and 360x640), keyboard-only operation of the changed controls, and the console and network log free of errors and of requests to another host. Browser checks are manual unless a scripted or headless run is possible: the agent does that run as far as it can, records it as evidence, and lists the remaining steps as Owner checks in the pull request.
 6. For anything that claims determinism (routing, generators, search order, `verify` output): the same result from two runs, and the pinned expected value in a test.
 7. `git status` showing no stray files, and confirmation that no dependency, external URL or non-loopback listener was added.
 8. Green CI on the draft pull request: every job of `.github/workflows/ci.yml` passed. This is checked by the driver after the gates, before `gh pr ready`; the gates themselves check items 1 to 7 and that CI is configured to run the checks.
@@ -142,6 +142,7 @@ How a ticket gets from the backlog to a ready pull request. Each piece lives in 
 
 - **Start and playbook.** The owner starts one ticket with `/next-ticket` ([.claude/skills/next-ticket/SKILL.md](.claude/skills/next-ticket/SKILL.md)); it runs [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md). Nothing is scheduled. [LOOP.md](LOOP.md) says why ticket work is not a loop run.
 - **Review gate hook.** [.claude/hooks/role_gate.py](.claude/hooks/role_gate.py), wired in [.claude/settings.json](.claude/settings.json), blocks `gh pr create` and `gh pr ready` until Code Reviewer and Reality Checker ran after the last code edit. Starting Claude Code with `ROLE_GATE=off` in its environment switches it off for that session.
+- **Sub-issues, CI wait, reviewer diffs.** `/next-ticket` picks leaf tickets only and refuses a `tracking` parent; the pull request of a parent's last sub-issue also closes the parent. After the draft pull request it ends the turn with "Draft pull request #N is waiting for CI" instead of polling, and reads `gh pr checks` once when woken. The reviewers have no shell, so the diff and evidence go to `.claude/state/review/` first. Acceptance steps only a person can do are listed as "Owner checks" in the pull request.
 - **Permissions.** The allow, ask and deny rules are in `.claude/settings.json`. Edits to CI, agent configuration and Loop files ask first; force pushes, pushes to `main`, `gh pr merge`, releases and reads of `.env` are denied.
 - **CI.** [.github/workflows/ci.yml](.github/workflows/ci.yml) must be green: job `test` on Ubuntu and Windows with Python 3.12 and 3.13.
 - **Pull request.** [.github/pull_request_template.md](.github/pull_request_template.md). Labels on tickets: `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`.

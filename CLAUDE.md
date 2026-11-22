@@ -97,7 +97,7 @@ Rules that every change must keep:
 
 - `main` is the default branch. CI runs the test suite on Linux and Windows (see "Delivery workflow"); checks are also run locally and reported with their output.
 - One branch per issue. The repository has no naming rule yet; `<issue-number>-<short-slug>` is the suggested form. Small commits with imperative subjects and a type prefix, as in the existing history (`feat:`, and by extension `fix:`, `docs:`, `test:`, `chore:`).
-- Open a pull request that names the issue (`Part of #1`, `Closes #n`) with the pull request template. Push the branch and open it only when the owner asked in the current session; a `/next-ticket` run counts as that request. Open or ready it only after both gates passed on the current diff and, for ready, CI is green. Do not merge your own pull request and do not push to `main`.
+- Open a pull request that names the issue (`Part of #1`, `Closes #n`) with the pull request template. Push the branch and open it only when the owner asked in the current session; a `/next-ticket` run counts as that request. Open it as a draft (`gh pr create --draft`) only after both gates passed on the current diff, and mark it ready (`gh pr ready`) only when CI is green; run both from the ticket worktree. Do not merge your own pull request and do not push to `main`.
 - Two pull requests that each add a migration: the one that merges second renumbers its migration and rebases.
 - Never commit a data directory, a SQLite file, `.env*`, or `.prep/`.
 - Do not change `.claude/agents/`, `LOOP.md`, `loop-constraints.md` or `loop-budget.md` as part of a feature ticket.

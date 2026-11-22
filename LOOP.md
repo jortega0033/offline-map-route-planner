@@ -1,6 +1,6 @@
 # Loop Configuration: Issue Triage
 
-Scaffolded with `npx --yes @cobusgreyling/loop@0.2.0 init . --pattern issue-triage --tool claude` ([Loop Engineering](https://github.com/cobusgreyling/loop-engineering), MIT). The generated `.grok/` and `.codex/` variants were removed; this repository uses the Claude Code files only. The scaffold generated no workflow file, and none was added.
+Scaffolded with `npx --yes @cobusgreyling/loop@0.2.0 init . --pattern issue-triage --tool claude` ([Loop Engineering](https://github.com/cobusgreyling/loop-engineering), MIT). The generated `.grok/` and `.codex/` variants were removed; this repository uses the Claude Code files only. The scaffold generated no workflow file. The SDLC kit later added a CI workflow and the pull request and issue templates for ticket work; none of them is a loop scheduler.
 
 ## Active Loops
 
@@ -77,7 +77,7 @@ Run on 2026-11-22 (Windows 11, Node v22.23.4) after the scaffold was adapted:
 
 ## Doctor suggestions that were not adopted
 
-`loop doctor` also suggests a `docs/safety.md`, issue and pull request templates and workflows, and as a third item either a `patterns/registry.yaml` or worktree isolation notes (two runs a minute apart gave one each). They were left out on purpose: the denylists and merge policy are in `loop-constraints.md`, a workflow would be the scheduler that L1 excludes, a pattern registry belongs to the upstream Loop Engineering repository, and an L1 run edits two report files only, so it needs no worktree of its own.
+`loop doctor` also suggests a `docs/safety.md`, issue and pull request templates and workflows, and as a third item either a `patterns/registry.yaml` or worktree isolation notes (two runs a minute apart gave one each). They were left out on purpose (the SDLC kit later added CI and the templates for ticket work, which is separate from the loop): the denylists and merge policy are in `loop-constraints.md`, a loop workflow would be the scheduler that L1 excludes, a pattern registry belongs to the upstream Loop Engineering repository, and an L1 run edits two report files only, so it needs no worktree of its own.
 
 ## Links
 

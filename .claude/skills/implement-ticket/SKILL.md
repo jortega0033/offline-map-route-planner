@@ -23,7 +23,7 @@ The project subagents in `.claude/agents/` are part of the work. Each role file 
 9. **Acceptance gate, always.** Run Reality Checker with the ticket's acceptance criteria and the evidence you produced. Do not call the ticket done unless it passes.
 10. **Copy check.** Run the `unslop` skill over user-facing copy, documentation and the pull request text you wrote, and fix what it flags.
 11. **Changelog.** Add one line for the ticket under `Unreleased` in `CHANGELOG.md`.
-12. **Hand off.** Capture the evidence `CLAUDE.md` asks for. Open the pull request with `.github/pull_request_template.md` (it names the issue and has the "Agent roles run" table) only after both gates passed on the current diff; the gate hook blocks `gh pr create` and `gh pr ready` otherwise. A `/next-ticket` run counts as the owner's request to push the branch and open the pull request; outside such a run, push and open it only when the owner asks in the current session. Wait for CI (`gh pr checks`) to be green on every job, then mark the pull request ready. Only the owner merges: never run `gh pr merge`.
+12. **Hand off.** Capture the evidence `CLAUDE.md` asks for. Open the pull request as a draft (`gh pr create --draft`) with `.github/pull_request_template.md` (it names the issue and has the "Agent roles run" table) only after both gates passed on the current diff; the gate hook blocks `gh pr create` and `gh pr ready` otherwise. A `/next-ticket` run counts as the owner's request to push the branch and open the pull request; outside such a run, push and open it only when the owner asks in the current session. Wait for CI (`gh pr checks`) to be green on every job, then mark the pull request ready. Only the owner merges: never run `gh pr merge`.
 
 ## Roles
 

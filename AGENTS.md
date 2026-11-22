@@ -20,10 +20,10 @@ The server binds `127.0.0.1` only. `--data-dir` is required. Stop it with Ctrl+C
 
 ## Ticket work
 
-To implement a GitHub issue, follow the steps in [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md) and the section "Subagents and ticket work" in [CLAUDE.md](CLAUDE.md). The role files in `.claude/agents/` each start with an "In this repository" section that holds the role's checklist for this project. An agent that cannot delegate to them follows the playbook's rule for a role that is not installed.
+To implement a GitHub issue, follow the steps in [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md) and the section "Subagents and ticket work" in [CLAUDE.md](CLAUDE.md). The role files in `.claude/agents/` each start with an "In this repository" section that holds the role's checklist for this project. An agent that cannot delegate to them follows the playbook's rule for a role that is not installed. The owner starts ticket work with `/next-ticket`, which counts as the go signal for one ticket (see `CLAUDE.md`, "Delivery workflow").
 
 ## Loop conventions
 
 - The loop runs at L1: report-only, started by hand. It proposes; it does not label, comment, close, edit source, push or merge.
-- No scheduler and no workflow file is installed. Do not add one without the owner's approval.
+- No scheduler and no loop workflow is installed. `.github/workflows/ci.yml` is CI for pull requests (owner decision 2026-11-22), not a loop run. Do not add a scheduler without the owner's approval.
 - See [LOOP.md](LOOP.md) for the manual command and the human gates.

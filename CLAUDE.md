@@ -13,7 +13,7 @@ An offline route planner for one person on one computer. One Python package, sta
 | Product scope, milestones, API and schema contracts, fixtures, acceptance matrix | [docs/PRD.md](docs/PRD.md) |
 | How the code is built, the traced workflow, the rules the code keeps, differences between the PRD and the code | [docs/architecture.md](docs/architecture.md) |
 | Launch, smoke steps, limits, the owner's baseline verification | [README.md](README.md) |
-| Backlog | Epic issue #1 and its sub-issues on GitHub, in dependency order: #NEW-A, #2, then two tracks (#4 then #3, and #5 then #6), then #NEW-B. The epic gives the dependencies, the join points and the estimates. |
+| Backlog | Epic issue #1 and its sub-issues on GitHub, in dependency order: #7, #2, then two tracks (#4 then #3, and #5 then #6), then #8. The epic gives the dependencies, the join points and the estimates. |
 | Loop setup and its limits | [LOOP.md](LOOP.md), [loop-constraints.md](loop-constraints.md) |
 | Project subagents and their origin | [.claude/agency-agents/README.md](.claude/agency-agents/README.md) |
 

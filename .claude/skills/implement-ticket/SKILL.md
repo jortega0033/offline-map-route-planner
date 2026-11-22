@@ -14,14 +14,16 @@ The project subagents in `.claude/agents/` are part of the work. Each role file 
 
 1. **Read the ticket.** `gh issue view <number>` and the epic it belongs to. Check that every prerequisite issue is closed and that no owner decision named in the ticket is still open. If the ticket is blocked, stop and say what blocks it.
 2. **Read the rules.** `CLAUDE.md`, then the architecture notes it links to.
-3. **Orient and check the approach.** Delegate as the table "Before coding" says. Settle open design questions before writing code.
+3. **Orient and check the approach.** Delegate as the table "Before coding" says. Settle open design questions before writing code. For a ticket that changes `offline_routes/static/`, start with the `ui-ux-pro-max` skill (`python .claude/skills/ui-ux-pro-max/scripts/search.py "<product type>" --design-system`) and read `docs/ui-quality.md`.
 4. **Branch** as the Git workflow in `CLAUDE.md` says. Never work on the default branch.
 5. **Implement** inside the ticket's stated scope. Delegate the work to the implementing role that matches the files being changed (table "While coding"). Do not widen scope; note anything else you find as a follow-up.
 6. **Test.** Add tests for every acceptance criterion and material edge case. Expected values in existing tests stay as they are unless the issue names the test and the change (`CLAUDE.md`, "Evidence before a ticket is called done"). Then run the checks listed in `CLAUDE.md`; a change to the page also needs the recorded manual browser run it describes, because the repository has no browser automation. Record each command and its result.
-7. **Specialist review.** Run every role in the table "After coding" whose trigger matches the change.
+7. **Specialist review.** Run every role in the table "After coding" whose trigger matches the change. For a UI change, check the changed screens against the ten rules in `docs/ui-quality.md` and fix breaches before the review gate.
 8. **Review gate, always.** Run Code Reviewer on the full diff. Fix every material finding, re-run the checks, and have the reviewer look again until no material finding is left.
 9. **Acceptance gate, always.** Run Reality Checker with the ticket's acceptance criteria and the evidence you produced. Do not call the ticket done unless it passes.
-10. **Hand off.** Capture the evidence `CLAUDE.md` asks for and open a draft pull request that names the issue. Do not merge.
+10. **Copy check.** Run the `unslop` skill over user-facing copy, documentation and the pull request text you wrote, and fix what it flags.
+11. **Changelog.** Add one line for the ticket under `Unreleased` in `CHANGELOG.md`.
+12. **Hand off.** Capture the evidence `CLAUDE.md` asks for. Open the pull request with `.github/pull_request_template.md` (it names the issue and has the "Agent roles run" table) only after both gates passed on the current diff; the gate hook blocks `gh pr create` and `gh pr ready` otherwise. A `/next-ticket` run counts as the owner's request to push the branch and open the pull request; outside such a run, push and open it only when the owner asks in the current session. Wait for CI (`gh pr checks`) to be green on every job, then mark the pull request ready. Only the owner merges: never run `gh pr merge`.
 
 ## Roles
 

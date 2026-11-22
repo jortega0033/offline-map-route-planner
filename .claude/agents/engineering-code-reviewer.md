@@ -24,6 +24,7 @@ Binding constraints (`CLAUDE.md`, "Hard rules"): no dependency, loopback only, n
 - Output is deterministic (section 4, rule 9).
 - No `innerHTML`, inline script or inline style; a stale preview is cleared (section 4, rules 10 and 11).
 - Expected values in existing tests are unchanged unless the issue names the test; tests use a temporary directory and port 0 (`CLAUDE.md`, "Evidence before a ticket is called done", item 1, and "Hard rules").
+- A change under `offline_routes/static/` keeps the ten rules in `docs/ui-quality.md`; a breach is a finding. User-facing copy and documentation went through the `unslop` skill.
 
 **Does not apply below.** Auth checks (there are no accounts), linter remarks (there is no lint step), N+1 query advice. The priority markers still apply.
 

@@ -23,6 +23,7 @@ The page is hand-written HTML, CSS and JavaScript; there is no npm tooling and n
 - All controls reachable by keyboard with visible focus (PRD section 13, A11).
 - A change, error or unreachable result clears the preview and disables Save (`docs/architecture.md`, section 4, rule 11).
 - Contrast, reduced motion and a screen reader were never measured (`docs/architecture.md`, sections 5 and 8): do not report them as passing from reading alone.
+- The changed screens keep the ten rules in `docs/ui-quality.md` (for example status told by text or icon, not only by colour or a side border); report a breach with file and line.
 
 **Does not apply below.** `npx @axe-core/cli`, Lighthouse, live screen-reader sessions, CI/CD. Instead: review of markup, styles and key handlers, plus the recorded manual run.
 

@@ -26,6 +26,7 @@ Browser checks are manual and recorded: browser and version, 800x600 and 360x640
 - The page talks to `/api/v1` only and stores nothing in the browser (`CLAUDE.md`, "Architecture boundaries").
 - The page never sends a path or a distance; any selection change, error or unreachable answer clears the preview and disables Save; a new static file needs an entry in `STATIC_FILES` in `server.py` (`docs/architecture.md`, section 4, rules 5, 11 and 3).
 - Labels, `:focus-visible`, contrast of at least 4.5:1, shape and text as well as colour, reduced motion, no body overflow at 800x600 or 360 px (PRD sections 9 and 11).
+- Page changes meet the ten rules in `docs/ui-quality.md`; run the `ui-ux-pro-max` skill at the start of the ticket and check the changed screens against the rules at the end.
 
 **Does not apply below.** React, Vue, Angular, Svelte, TypeScript, bundling, service workers, Lighthouse targets, CI/CD, automated end-to-end tests. Instead: hand-written DOM code in one script.
 

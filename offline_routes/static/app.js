@@ -2,7 +2,13 @@
   'use strict';
 
   var W = 400, H = 260;
-  var COLORS = { paper: '#fbf7ee', ink: '#1f2a2e', teal: '#0b5560', amber: '#d98a00', edge: '#6d7173' };
+  var COLORS = {};
+  // Canvas colours come from tokens.css; read again on every draw so the OS colour scheme applies.
+  function readColors() {
+    var cs = getComputedStyle(document.documentElement);
+    var get = function (name) { return cs.getPropertyValue(name).trim(); };
+    COLORS = { paper: get('--bg'), ink: get('--fg'), node: get('--bg-raised'), accent: get('--primary'), edge: get('--control-border') };
+  }
   var NET_MSG = 'Server unreachable. Check that it is running, then try again.';
 
   var $ = function (id) { return document.getElementById(id); };
@@ -145,6 +151,7 @@
     var dpr = window.devicePixelRatio || 1;
     var k = scale / dpr;                                // css px per logical unit
     var px = function (n) { return n / k; };            // css px -> logical units
+    readColors();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(scale, 0, 0, scale, 0, 0);
@@ -176,7 +183,7 @@
       if (hot) {
         ctx.strokeStyle = COLORS.ink; ctx.lineWidth = px(10);
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-        ctx.strokeStyle = COLORS.amber; ctx.lineWidth = px(6);
+        ctx.strokeStyle = COLORS.accent; ctx.lineWidth = px(6);
       } else {
         ctx.strokeStyle = COLORS.edge; ctx.lineWidth = px(2);
       }
@@ -203,7 +210,7 @@
       var inRoute = preview && preview.path.indexOf(n.id) !== -1;
       ctx.lineWidth = px(2);
       ctx.strokeStyle = COLORS.ink;
-      ctx.fillStyle = inRoute ? COLORS.amber : COLORS.teal;
+      ctx.fillStyle = inRoute ? COLORS.accent : COLORS.node;
       ctx.beginPath();
       if (isFrom) {
         r = px(8);
@@ -381,6 +388,7 @@
   routeForm.addEventListener('submit', calculate);
   saveForm.addEventListener('submit', save);
   window.addEventListener('resize', resize);
+  if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
   if (typeof ResizeObserver === 'function') new ResizeObserver(resize).observe(wrap);
 
   updateControls();

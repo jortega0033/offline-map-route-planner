@@ -388,7 +388,11 @@
   routeForm.addEventListener('submit', calculate);
   saveForm.addEventListener('submit', save);
   window.addEventListener('resize', resize);
-  if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  var schemeQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  if (schemeQuery) {
+    if (schemeQuery.addEventListener) schemeQuery.addEventListener('change', draw);
+    else if (schemeQuery.addListener) schemeQuery.addListener(draw);
+  }
   if (typeof ResizeObserver === 'function') new ResizeObserver(resize).observe(wrap);
 
   updateControls();

@@ -40,10 +40,10 @@ h3 { margin: 16px 0 6px; font-size: 1rem; }
 .panel {
   min-width: 0;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 6px;
   padding: 14px;
-  box-shadow: var(--shadow-1);
+  box-shadow: 4px 4px 0 var(--hairline);
 }
 
 .field { margin-bottom: 12px; }
@@ -57,7 +57,7 @@ select, input[type="text"] {
   font: inherit;
   color: var(--fg);
   background: var(--bg-raised);
-  border: 1px solid var(--input-border);
+  border: 2px solid var(--input-border);
   border-radius: 4px;
 }
 
@@ -68,7 +68,7 @@ button {
   font-weight: 600;
   color: var(--fg);
   background: var(--btn-secondary);
-  border: 1px solid var(--btn-secondary-border);
+  border: 2px solid var(--btn-secondary-border);
   border-radius: 4px;
   cursor: pointer;
 }
@@ -82,10 +82,12 @@ button.primary, #save {
 button:hover:not(:disabled) { background: var(--state-hover); }
 button.primary:hover:not(:disabled), #save:hover:not(:disabled) { background: var(--primary-press); }
 
-button:disabled {
+button:disabled,
+button.primary:disabled,
+#save:disabled {
   color: var(--faint);
   background: var(--bg-sunken);
-  border-color: var(--border);
+  border-color: transparent;
   cursor: not-allowed;
 }
 
@@ -103,9 +105,9 @@ button:disabled {
 
 #steps { margin: 0 0 8px; padding-left: 1.5em; }
 #steps li { margin-bottom: 4px; }
-.total { margin: 0 0 12px; font-weight: 700; border-top: 1px solid var(--hairline); padding-top: 6px; }
+.total { margin: 0 0 12px; font-weight: 700; border-top: 3px solid var(--border); padding-top: 6px; }
 
-#save-form { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--hairline); }
+#save-form { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--hairline); }
 
 .saved, #edges { list-style: none; margin: 0; padding: 0; }
 .saved li {
@@ -127,7 +129,7 @@ button:disabled {
   max-width: 100%;
   height: auto;
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 4px;
 }
 

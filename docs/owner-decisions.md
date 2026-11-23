@@ -73,3 +73,4 @@ Documented commands are allowed; force pushes, pushes to the default branch, mer
 
 - Date: 2026-11-23
 - Implemented in: `offline_routes/static/tokens.css`, `offline_routes/static/app.css`, `offline_routes/static/app.js`, `docs/design-tokens.md`.
+- Geometry kept as before (2px borders, offset panel shadow, 3px total rule, dashed save divider); only colours map to tokens. One owner-check item: the `#status` message lost its 4px left accent border and padding, because that breaches UI rule 1 in `docs/ui-quality.md`; the error state is now shown by colour and weight only.

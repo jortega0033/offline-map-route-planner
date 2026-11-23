@@ -19,6 +19,7 @@ STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
 # Fixed allowlist: request path -> (file name inside STATIC_DIR, content type).
 STATIC_FILES = {
     "/": ("index.html", "text/html; charset=utf-8"),
+    "/tokens.css": ("tokens.css", "text/css; charset=utf-8"),
     "/app.css": ("app.css", "text/css; charset=utf-8"),
     "/app.js": ("app.js", "text/javascript; charset=utf-8"),
 }

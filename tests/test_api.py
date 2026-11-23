@@ -132,6 +132,7 @@ class ReadEndpointTests(ServerCase):
 class StaticTests(ServerCase):
     EXPECT = {
         "/": "text/html; charset=utf-8",
+        "/tokens.css": "text/css; charset=utf-8",
         "/app.css": "text/css; charset=utf-8",
         "/app.js": "text/javascript; charset=utf-8",
     }

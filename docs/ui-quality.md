@@ -15,6 +15,8 @@ Ten rules for every screen and every piece of user-facing text in this repositor
 
 ## How the rules are applied
 
+- Colours come from the tokens described in [design-tokens.md](design-tokens.md); new UI adds no colour literal.
+
 - A ticket that changes the page starts with the `ui-ux-pro-max` skill (`python .claude/skills/ui-ux-pro-max/scripts/search.py "<product type>" --design-system`) and ends with a check of the changed screens against this file. Where the skill's advice conflicts with these rules or with `CLAUDE.md` (no external fonts, images, CDN or framework), these rules and `CLAUDE.md` win.
 - User-facing copy, documentation and pull request text go through the `unslop` skill before the pull request is opened.
 - The Frontend Developer, Accessibility Auditor and Code Reviewer roles name this file in their "In this repository" checklists. Code Reviewer runs on every ticket, so the review gate is where the rules are enforced. There is no script: rule 1 could be linted, rule 2 cannot be detected reliably from CSS.

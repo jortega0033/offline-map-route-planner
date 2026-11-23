@@ -147,7 +147,7 @@ How a ticket gets from the backlog to a ready pull request. Each piece lives in 
 - **CI.** [.github/workflows/ci.yml](.github/workflows/ci.yml) must be green: job `test` on Ubuntu and Windows with Python 3.12 and 3.13.
 - **Pull request.** [.github/pull_request_template.md](.github/pull_request_template.md). Labels on tickets: `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`.
 - **Changelog.** Every ticket pull request adds a line under `Unreleased` in [CHANGELOG.md](CHANGELOG.md). Releasing is in [docs/RELEASING.md](docs/RELEASING.md); security reports in [SECURITY.md](SECURITY.md).
-- **UI and writing.** [docs/ui-quality.md](docs/ui-quality.md) holds the ten UI rules; the `ui-ux-pro-max` and `unslop` skills are in `.claude/skills/`.
+- **UI and writing.** Colours come from the Pipenzo tokens in [docs/design-tokens.md](docs/design-tokens.md); [docs/ui-quality.md](docs/ui-quality.md) holds the ten UI rules; the `ui-ux-pro-max` and `unslop` skills are in `.claude/skills/`.
 - **Decisions.** [docs/owner-decisions.md](docs/owner-decisions.md) records what the owner decided and where it is implemented.
 - **Merge.** Only the owner merges and releases.
 

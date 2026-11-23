@@ -68,3 +68,8 @@ Documented commands are allowed; force pushes, pushes to the default branch, mer
 
 - Date: 2026-11-22
 - Implemented in: `docs/ui-quality.md`, `.claude/skills/ui-ux-pro-max/`, `.claude/skills/unslop/` (each with `PROVENANCE.md`), `.claude/skills/implement-ticket/SKILL.md`, `.claude/settings.json` (search script allowed).
+
+## 13. Visual system: Pipenzo Flow look tokens (docs/design-tokens.md). SDLC kit version: jortega0033/sdlc-kit v1.0.0.
+
+- Date: 2026-11-23
+- Implemented in: `offline_routes/static/tokens.css`, `offline_routes/static/app.css`, `offline_routes/static/app.js`, `docs/design-tokens.md`.

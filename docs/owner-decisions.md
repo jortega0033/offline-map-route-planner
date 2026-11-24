@@ -83,4 +83,4 @@ The owner accepted the goal and each suggestion below. They apply from the phase
 |---|---|
 | The repository has a program goal above phase 1: an offline map and routing engine for a whole country, in six phases. | Program issue #34 |
 | Real map data ends the synthetic-only rule and brings the ODbL licence. Suggested: download by the owner, never committed. | Program issue #34 |
-| The standard-library rule limits the speed targets. Suggested: decide on a compiled core before the fast routing milestone. | Program issue #34 |
+| The standard-library rule limits the speed targets. Suggested: decide on a compiled core before the fast routing phase. | Program issue #34 |

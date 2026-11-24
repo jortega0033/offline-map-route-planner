@@ -6,4 +6,5 @@ All notable changes to this project are recorded here, in the [Keep a Changelog]
 
 ### Added
 
+- Program goal, score and phases 1 to 6 (#34).
 - Delivery kit: review gate hook, permission rules, CI on Linux and Windows, pull request template, `/next-ticket` driver, UI quality rules and the `ui-ux-pro-max` and `unslop` skills.

@@ -4,6 +4,25 @@ A local, single-person route planner for when live map services are unavailable.
 
 Requires Python 3.12. No packages to install.
 
+## Program goal
+
+Build an offline map and routing engine for a whole country: import raw map data, draw it, route cars, bikes, walkers and public transport in milliseconds, and navigate, with no map service or routing library.
+
+The program is planned ([#34](https://github.com/jortega0033/offline-map-route-planner/issues/34)). Phase 1 is the current epic [#1](https://github.com/jortega0033/offline-map-route-planner/issues/1) and the only phase with tickets.
+
+**Score.** Share of random country-wide queries where the fast engine returns the same cost as a plain exhaustive search, with the median query time.
+
+| Phase | Content | Hours (rough) | Issue |
+|---|---|---|---|
+| 1 | The current epic and its tickets | 46 to 74 | [#1](https://github.com/jortega0033/offline-map-route-planner/issues/1) |
+| 2 | Real map data | 100 to 160 | [#35](https://github.com/jortega0033/offline-map-route-planner/issues/35) |
+| 3 | Fast routing | 120 to 200 | [#36](https://github.com/jortega0033/offline-map-route-planner/issues/36) |
+| 4 | Map rendering | 120 to 200 | [#37](https://github.com/jortega0033/offline-map-route-planner/issues/37) |
+| 5 | Public transport | 90 to 150 | [#38](https://github.com/jortega0033/offline-map-route-planner/issues/38) |
+| 6 | Search and navigation | 100 to 170 | [#39](https://github.com/jortega0033/offline-map-route-planner/issues/39) |
+
+About 580 to 950 engineer hours in total: rough estimates, not measurements. The numbers in the score and the finish lines are targets until a run shows them. Only phase 1 has tickets to work; the sub-issues of a later phase are written when it starts. No single session is expected to reach the end.
+
 ## Launch
 
 Linux:
